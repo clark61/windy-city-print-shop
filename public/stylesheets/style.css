@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #fafafa
 }
 
 a {
@@ -9,17 +9,16 @@ a {
 
 h1 {
   font-family: Arial, sans-serif;
-  color: red;
+  color: #f4f4f5;
 }
 
 img {
-margin: 5px;
-border: 1px solid #ccc;
-float: left;
+  margin: 5px;
+  float: left;
 }
 
 img:hover {
-border: 1px solid #777;
+  border: 1px solid #777;
 }
  
 ul {
@@ -27,8 +26,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid #e7e7e7;
-  background-color: #f3f3f3;
+  background-color: #18181b;
 }
 
 li {
@@ -37,14 +35,14 @@ li {
 
 li a {
   display: block;
-  color: #666;
+  color: #f4f4f5;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover:not(.active) {
-  background-color: #ddd;
+  background-color: #3f3f46;
 }
 
 li a.active {
