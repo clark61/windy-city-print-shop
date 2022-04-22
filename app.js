@@ -5,6 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
 
+var dotenv = require('dotenv');
+dotenv.config();
+const mariadb = require('mariadb/callback');
+const db = mariadb.createConnection({host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT});
+// connect to database
+db.connect((err) => {
+  if (err) {
+    console.log("Unable to connect to database due to error: " + err);
+    res.render('error');
+  } else {
+    console.log("Connected to DB");
+  }
+});
+global.db = db;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
