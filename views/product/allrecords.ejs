@@ -1,0 +1,19 @@
+<% if (allrecs.length > 0) {%>
+    <table>
+        <% allrecs.forEach((recref, index) => { %>
+            <tr>
+                <td><%= recref.id %></td>
+                <td><%= recref.product_name %></td>
+                <td><%= recref.product_type %></td>
+                <td><%= recref.price %></td>
+                <td><%= recref.dimensions %></td>
+                <td><a href='/product/<%= recref.id %>/show'>Details</a></td>
+                <td><a href='/product/<%= recref.id %>/edit'>Edit</a></td>
+                <td><a href='/product/<%= recref.id %>/delete'onclick="return confirm('Are you sure you want to delete this record?');">Delete</a></td>
+            </tr>
+        <% }); %>
+    </table>
+<% } else { %>
+    <p>Not Records Available</p>
+<% } %>
+<p> <a href='/product/addrecord'>Add</a> </p>

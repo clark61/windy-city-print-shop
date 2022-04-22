@@ -1,0 +1,39 @@
+<h1> New Record</h1>
+<form action="/product" method="post">
+    <table>
+        <tr> 
+            <td> Product Name: </td> <td> <input type="text" name="product_name" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Status: </td> <td> 
+                <select name="product_type" required>
+                    <option selected disabled>Choose Type</option>
+                    <option>canvas</option>
+                    <option>frame</option>
+                </select> 
+            </td> 
+        </tr>
+
+        <tr> 
+            <td> Dimensions: </td> <td> <input type="text" name="dimensions" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Price: </td> 
+            <td> <input type="text" name="price" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Quantity: </td> <td> <input type="number" name="quantity" required> </td> 
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
+
+<tr> <td> Status: </td> <td> <select name="status" required>
+    <option selected disabled>Choose Status</option>
+    <option>Available</option>
+    <option>Discontinued</option>
+    <option>Future Plan</option>
+    </select> </td> </tr>
