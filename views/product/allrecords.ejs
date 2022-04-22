@@ -1,5 +1,13 @@
 <% if (allrecs.length > 0) {%>
     <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Dimensions</th>
+                <th colspan="3">Actions</th>
+            </tr>
         <% allrecs.forEach((recref, index) => { %>
             <tr>
                 <td><%= recref.id %></td>
