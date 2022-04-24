@@ -1,0 +1,46 @@
+<h1> Edit Review</h1>
+<form action="/review/save" method="post">
+    <input type="hidden" name="id" value="<%= onerec.id %>" >
+    <table>
+        <tr> 
+            <td> User ID: </td> <td> <input type="number" name="user_id" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Product ID: </td> <td> <input type="number" name="product_id" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Rating: </td> <td> 
+                <select name="rating" required>
+                    <option selected disabled>Select Rating</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select> 
+            </td> 
+        </tr>
+
+        <tr> 
+            <td> Comment: </td> <td> <textarea name="comment" required></textarea> </td>
+        </tr>
+
+        <tr> 
+            <td> Date: </td> 
+            <td> <input type="text" name="review_date" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Rating: </td> <td> 
+                <select name="public" required>
+                    <option selected disabled>Select Privacy</option>
+                    <option value="1">Public</option>
+                    <option value="0">Private</option>
+                </select> 
+            </td>
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
