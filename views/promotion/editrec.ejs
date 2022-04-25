@@ -1,0 +1,15 @@
+<h1> Edit Promotion</h1>
+<form action="/promotion/save" method="post">
+    <input type="hidden" name="id" value="<%= onerec.id %>" >
+    <table>
+        <tr> 
+            <td> Percent Off: </td> <td> <input type="number" name="percent_off" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Description: </td> 
+            <td> <input type="text" name="description" required> </td> 
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
