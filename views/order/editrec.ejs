@@ -1,0 +1,26 @@
+<h1> Edit Order</h1>
+<form action="/order/save" method="post">
+    <input type="hidden" name="id" value="<%= onerec.id %>" >
+    <table>
+        <tr> 
+            <td> Invoice ID: </td> <td> <input type="number" name="invoice_id" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Product ID: </td> <td> <input type="number" name="product_id" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Promotion ID: </td> <td> <input type="text" name="promotion_id"> </td> 
+        </tr>
+
+        <tr> 
+            <td> Quantity: </td> <td> <input type="number" name="quantity" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Total: </td> <td> <input type="number" name="total" step=0.01 required> </td> 
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
