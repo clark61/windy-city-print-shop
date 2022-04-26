@@ -1,0 +1,15 @@
+<h1> Edit Invoice</h1>
+<form action="/invoice/save" method="post">
+    <input type="hidden" name="id" value="<%= onerec.id %>" >
+    <table>
+        <tr> 
+            <td> User ID: </td> <td> <input type="text" name="user_id" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Invoice Date: </td> 
+            <td> <input type="text" name="invoice_date" required> </td> 
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
