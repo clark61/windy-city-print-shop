@@ -3,16 +3,16 @@
     <input type="hidden" name="id" value="<%= onerec.id %>" >
     <table>
         <tr> 
-            <td> User ID: </td> <td> <input type="number" name="user_id" required> </td> 
+            <td> User ID: </td> <td> <input type="number" name="user_id" value="<%= onerec.user_id %>" required> </td> 
         </tr>
 
         <tr> 
-            <td> Product ID: </td> <td> <input type="number" name="product_id" required> </td> 
+            <td> Product ID: </td> <td> <input type="number" name="product_id" value="<%= onerec.product_id %>" required> </td> 
         </tr>
 
         <tr> 
             <td> Rating: </td> <td> 
-                <select name="rating" required>
+                <select name="rating" value="<%= onerec.rating %>" required>
                     <option selected disabled>Select Rating</option>
                     <option>1</option>
                     <option>2</option>
@@ -24,17 +24,17 @@
         </tr>
 
         <tr> 
-            <td> Comment: </td> <td> <textarea name="comment" required></textarea> </td>
+            <td> Comment: </td> <td> <textarea name="comment" value="<%= onerec.comment %>" required></textarea> </td>
         </tr>
 
         <tr> 
             <td> Date: </td> 
-            <td> <input type="text" name="review_date" required> </td> 
+            <td> <input type="text" name="review_date" value="<%= onerec.review_date %>" required> </td> 
         </tr>
 
         <tr> 
             <td> Rating: </td> <td> 
-                <select name="public" required>
+                <select name="public" value="<%= onerec.public %>" required>
                     <option selected disabled>Select Privacy</option>
                     <option value="1">Public</option>
                     <option value="0">Private</option>

@@ -3,12 +3,12 @@
     <input type="hidden" name="id" value="<%= onerec.id %>" >
     <table>
         <tr> 
-            <td> Product Name: </td> <td> <input type="text" name="product_name" required> </td> 
+            <td> Product Name: </td> <td> <input type="text" name="product_name" value="<%= onerec.product_name %>" required> </td> 
         </tr>
 
         <tr> 
             <td> Type: </td> <td> 
-                <select name="product_type" required>
+                <select name="product_type" value="<%= onerec.product_type %>" required>
                     <option selected disabled>Choose Type</option>
                     <option>canvas</option>
                     <option>frame</option>
@@ -17,16 +17,16 @@
         </tr>
 
         <tr> 
-            <td> Dimensions: </td> <td> <input type="text" name="dimensions" required> </td> 
+            <td> Dimensions: </td> <td> <input type="text" name="dimensions" value="<%= onerec.dimensions %>" required> </td> 
         </tr>
 
         <tr> 
             <td> Price: </td> 
-            <td> <input type="text" name="price" required> </td> 
+            <td> <input type="text" name="price" value="<%= onerec.price %>" required> </td> 
         </tr>
 
         <tr> 
-            <td> Quantity: </td> <td> <input type="number" name="quantity" required> </td> 
+            <td> Quantity: </td> <td> <input type="number" name="quantity" value="<%= onerec.quantity %>" required> </td> 
         </tr>
     </table>
     <button type="submit">Save</button>

@@ -3,12 +3,12 @@
     <input type="hidden" name="id" value="<%= onerec.id %>" >
     <table>
         <tr> 
-            <td> User ID: </td> <td> <input type="text" name="user_id" required> </td> 
+            <td> User ID: </td> <td> <input type="number" name="user_id" value="<%= onerec.user_id %>" required> </td> 
         </tr>
 
         <tr> 
             <td> Invoice Date: </td> 
-            <td> <input type="text" name="invoice_date" required> </td> 
+            <td> <input type="text" name="invoice_date" value="<%= onerec.invoice_date %>" required> </td> 
         </tr>
     </table>
     <button type="submit">Save</button>

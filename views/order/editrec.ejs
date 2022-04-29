@@ -3,23 +3,23 @@
     <input type="hidden" name="id" value="<%= onerec.id %>" >
     <table>
         <tr> 
-            <td> Invoice ID: </td> <td> <input type="number" name="invoice_id" required> </td> 
+            <td> Invoice ID: </td> <td> <input type="number" name="invoice_id" value="<%= onerec.invoice_id %>" required> </td> 
         </tr>
 
         <tr> 
-            <td> Product ID: </td> <td> <input type="number" name="product_id" required> </td> 
+            <td> Product ID: </td> <td> <input type="number" name="product_id" value="<%= onerec.product_id %>" required> </td> 
         </tr>
 
         <tr> 
-            <td> Promotion ID: </td> <td> <input type="text" name="promotion_id"> </td> 
+            <td> Promotion ID: </td> <td> <input type="text" name="promotion_id" value="<%= onerec.promotion_id %>"> </td> 
         </tr>
 
         <tr> 
-            <td> Quantity: </td> <td> <input type="number" name="quantity" required> </td> 
+            <td> Quantity: </td> <td> <input type="number" name="quantity" value="<%= onerec.quantity %>" required> </td> 
         </tr>
 
         <tr> 
-            <td> Total: </td> <td> <input type="number" name="total" step=0.01 required> </td> 
+            <td> Total: </td> <td> <input type="number" name="total" value="<%= onerec.total %>" step=0.01 required> </td> 
         </tr>
     </table>
     <button type="submit">Save</button>
