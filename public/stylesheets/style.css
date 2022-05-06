@@ -133,3 +133,9 @@ product {
 .db-table-add:hover {
   background-color: #52525b;
 }
+
+#search-bar {
+  background-color: #18181b;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
