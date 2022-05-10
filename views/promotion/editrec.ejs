@@ -10,6 +10,26 @@
             <td> Description: </td> 
             <td> <input type="text" name="description" value="<%= onerec.description %>" required> </td> 
         </tr>
+        
+        <tr> 
+            <td> Title: </td> 
+            <td> <input type="text" name="title" value="<%= onerec.title %>" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Image: </td> 
+            <td> <input type="text" name="image" value="<%= onerec.image %>" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> Start Date: </td> 
+            <td> <input type="date" name="start_date" value="<%= onerec.start_date %>" required> </td> 
+        </tr>
+
+        <tr> 
+            <td> End Date: </td> 
+            <td> <input type="date" name="end_date" value="<%= onerec.end_date %>" required> </td> 
+        </tr>
     </table>
     <button type="submit">Save</button>
 </form>
