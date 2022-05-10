@@ -1,9 +1,31 @@
-<div>
-  <h1>
-    Welcome!
-  </h1>
+<h1>Welcome!</h1>
+<table> 
+  <tr>
+    <td width="80%">
+      <% if (allrecs.length > 0) {%>
+        <% allrecs.forEach((recref, index) => { %>
+          <product>
+            <table>
+              <tr><td><%= recref.product_name %></td></tr>
+              <tr><td><%= recref.product_type %></td></tr>
+              <tr><td><%= recref.dimensions %></td></tr>
+              <tr><td><%= recref.price %></td></tr>
+              <tr><td><%= recref.quantity %></td></tr>
+              <tr><td><a href='/product/<%= recref.id %>/show'>Details</a></td></tr>
+            </table>
+          </product>
+        <% }); %>
+      <% } %>
+    </td>
 
-  <p>
-    We specialize in creating custom prints to fit any need.
-  </p>
-</div>
+    <td width="20%">
+      <% if (promos.length > 0) {%>
+      <table>
+        <% promos.forEach((recref, index) => { %>
+          <tr><td><%= recref.image %></td></tr>
+        <% }); %>
+      </table>
+      <% } %>
+    </td>
+  </tr>
+</table>
