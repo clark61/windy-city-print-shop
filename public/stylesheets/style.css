@@ -93,14 +93,23 @@ product {
   margin: 5px;
   border: 2px solid #ccc;
   float: left;
-  background: #ffffe6;
-    box-shadow: 5px 5px 2px #888888;
+  color: #f4f4f5;
+  background: #3f3f46;
+    box-shadow: 5px 5px 2px #52525b;
     min-width: 200px;
     max-width: 200px;
     min-height: 250px;
     max-height: 250px;
   border-radius: 5px;
   padding: 5px;
+}
+
+product a {
+  color: #f4f4f5;
+}
+
+product a:hover {
+  color: #e4e4e7;
 }
 
 .db-table th, .db-table td {
