@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 // Route to view one specific record. Notice the view is one record
 // ==================================================
 router.get('/:recordid/show', function(req, res, next) {
-    let query = "SELECT id, percent_off, description, title, start_date, end_date FROM promotion WHERE id = " + req.params.recordid;
+    let query = "SELECT id, percent_off, description, title, image, start_date, end_date FROM promotion WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
         if (err) {

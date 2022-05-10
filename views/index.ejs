@@ -22,7 +22,7 @@
       <% if (promos.length > 0) {%>
       <table>
         <% promos.forEach((recref, index) => { %>
-          <tr><td><%= recref.image %></td></tr>
+          <tr><td><img src="/images/<%= recref.image %>"></td></tr>
         <% }); %>
       </table>
       <% } %>
