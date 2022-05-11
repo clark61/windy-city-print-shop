@@ -112,6 +112,14 @@ product a:hover {
   color: #e4e4e7;
 }
 
+.link {
+  color: #f4f4f5;
+}
+
+.link:hover {
+  color: #e4e4e7;
+}
+
 .db-table th, .db-table td {
   padding: 10px;
   text-align: left;
