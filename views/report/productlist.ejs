@@ -1,0 +1,23 @@
+<h1>Product Listing</h1>
+<% if (allrecs.length > 0) {%>
+    <table class="db-table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Dimensions</th>
+            </tr>
+        <% allrecs.forEach((recref, index) => { %>
+            <tr>
+                <td><%= recref.id %></td>
+                <td><%= recref.product_name %></td>
+                <td><%= recref.product_type %></td>
+                <td><%= recref.price %></td>
+                <td><%= recref.dimensions %></td>
+            </tr>
+        <% }); %>
+    </table>
+<% } else { %>
+    <p>No Records Available</p>
+<% } %>
