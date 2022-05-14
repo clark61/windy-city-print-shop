@@ -15,8 +15,8 @@
                 <td><%= recref.percent_off %></td>
                 <td><%= recref.description %></td>
                 <td><%= recref.title %></td>
-                <td><%= recref.start_date %></td>
-                <td><%= recref.end_date %></td>
+                <td><%= recref.start_date.toISOString().split('T')[0] %></td>
+                <td><%= recref.end_date.toISOString().split('T')[0] %></td>
                 <td><a href='/promotion/<%= recref.id %>/show'>Details</a></td>
                 <td><a href='/promotion/<%= recref.id %>/edit'>Edit</a></td>
                 <td><a href='/promotion/<%= recref.id %>/delete'onclick="return confirm('Are you sure you want to delete this record?');">Delete</a></td>

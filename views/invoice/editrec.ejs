@@ -8,7 +8,7 @@
 
         <tr> 
             <td> Invoice Date: </td> 
-            <td> <input type="date" name="invoice_date" value="<%= onerec.invoice_date %>" required> </td> 
+            <td> <input type="date" name="invoice_date" value="<%= onerec.invoice_date.toISOString().split('T')[0] %>" required> </td> 
         </tr>
     </table>
     <button type="submit">Save</button>

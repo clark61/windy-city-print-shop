@@ -2,5 +2,5 @@
 <table>
     <tr> <td> Invoice ID: </td> <td> <%= onerec.id %> </td> </tr>
     <tr> <td> User ID: </td> <td> <%= onerec.user_id %> </td> </tr>
-    <tr> <td> Invoice Date: </td> <td> <%= onerec.invoice_date %> </td> </tr>
+    <tr> <td> Invoice Date: </td> <td> <%= onerec.invoice_date.toISOString().split('T')[0] %> </td> </tr>
 </table>
