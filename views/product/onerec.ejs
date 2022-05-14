@@ -4,5 +4,5 @@
     <tr> <td> Product Name: </td> <td> <%= onerec.product_name %> </td> </tr>
     <tr> <td> Type: </td> <td> <%= onerec.product_type %> </td> </tr>
     <tr> <td> Dimensions: </td> <td> <%= onerec.dimensions %> </td> </tr>
-    <tr> <td> Price: </td> <td> <%= onerec.price %> </td> </tr>
+    <tr> <td> Price: </td> <td> <%= Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(onerec.price) %> </td> </tr>
 </table>

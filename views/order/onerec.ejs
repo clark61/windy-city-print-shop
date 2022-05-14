@@ -5,5 +5,5 @@
     <tr> <td> Product ID: </td> <td> <%= onerec.product_id %> </td> </tr>
     <tr> <td> Promotion ID: </td> <td> <%= onerec.promotion_id %> </td> </tr>
     <tr> <td> Quantity: </td> <td> <%= onerec.quantity %> </td> </tr>
-    <tr> <td> Total: </td> <td> <%= onerec.total %> </td> </tr>
+    <tr> <td> Total: </td> <td> <%= Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(onerec.total) %> </td> </tr>
 </table>

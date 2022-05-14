@@ -16,7 +16,7 @@
                 <td><%= recref.product_id %></td>
                 <td><%= recref.promotion_id %></td>
                 <td><%= recref.quantity %></td>
-                <td><%= recref.total %></td>
+                <td><%= Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(recref.total) %></td>
             </tr>
         <% }); %>
     </table>

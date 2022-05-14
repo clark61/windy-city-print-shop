@@ -13,7 +13,7 @@
                 <td><%= recref.id %></td>
                 <td><%= recref.product_name %></td>
                 <td><%= recref.product_type %></td>
-                <td><%= recref.price %></td>
+                <td><%= Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(recref.price) %></td>
                 <td><%= recref.dimensions %></td>
                 <td><a href='/product/<%= recref.id %>/show'>Details</a></td>
                 <td><a href='/product/<%= recref.id %>/edit'>Edit</a></td>
