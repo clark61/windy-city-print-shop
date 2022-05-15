@@ -94,12 +94,11 @@ product {
   border: 2px solid #ccc;
   float: left;
   color: #f4f4f5;
-  background: #3f3f46;
-    box-shadow: 5px 5px 2px #52525b;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 250px;
-    max-height: 250px;
+  background: #27272a;
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 250px;
+  max-height: 250px;
   border-radius: 5px;
   padding: 5px;
 }
@@ -137,7 +136,8 @@ product a:hover {
   border-bottom: 1px solid #f4f4f5;
 }
 
-.db-table-add {
+.default-button {
+  border: none;
   color: #f4f4f5;
   text-decoration: none;
   background-color: #3f3f46;
@@ -147,7 +147,8 @@ product a:hover {
   padding-left: 20px;
 }
 
-.db-table-add:hover {
+.default-button:hover {
+  cursor: pointer;
   background-color: #52525b;
 }
 
