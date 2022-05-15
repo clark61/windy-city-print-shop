@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var layouts = require('express-ejs-layouts');
 var dotenv = require('dotenv');
+const session = require('express-session');
 
 dotenv.config();
 const mariadb = require('mariadb/callback');
@@ -38,6 +39,7 @@ var invoiceRouter = require('./routes/invoice');
 var orderRouter = require('./routes/order');
 var searchRouter = require('./routes/search');
 var reportRouter = require('./routes/report');
+var catalogRouter = require('./routes/catalog');
 
 var app = express();
 
@@ -52,6 +54,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: process.env.APP_SECRET}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -67,6 +70,12 @@ app.use('/invoice', invoiceRouter);
 app.use('/order', orderRouter);
 app.use('/search', searchRouter);
 app.use('/report', reportRouter);
+app.use('/catalog', catalogRouter);
+
+app.use(function(req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
