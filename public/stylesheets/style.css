@@ -70,6 +70,18 @@ li a.active {
   50px 0 rgba(0,0,0,0.19);
 }
 
+input {
+  color: #f4f4f5;
+  background-color: #3f3f46;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  border: solid;
+  border-color: #52525b;
+  border-width: 1px;
+}
+
 #footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
