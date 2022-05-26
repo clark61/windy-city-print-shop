@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcryptjs');
 
 // ==================================================
 // Route to list all records. Display view to list all records
@@ -39,6 +40,78 @@ router.get('/addrecord', function(req, res, next) {
     res.render('user/addrec');
 });
 
+// ==================================================
+// Route to enable registration
+// ==================================================
+router.get('/register', function(req, res, next) {
+    res.render('user/addrec');
+});
+
+// ==================================================
+// Route to obtain user input and save in database.
+// ==================================================
+router.post('/', function(req, res, next) {
+    let insertquery = "INSERT INTO user (user_name, password, first_name, last_name, email, address_1, address_2, city, state, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            if(err) { res.render('error');}
+            db.query(insertquery,[req.body.user_name, hash, req.body.first_name, req.body.last_name, req.body.email, req.body.address_1, req.body.address_2, req.body.city, req.body.state, req.body.zip], (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.render('error');
+                } else {
+                    res.redirect('/user');
+                }
+            });
+        });
+    });
+});
+
+// ==================================================
+// Route Provide Login Window
+// ==================================================
+router.get('/login', function(req, res, next) {
+    res.render('user/login', {message: "Please Login"});
+});
+
+// ==================================================
+// Route Check Login Credentials
+// ==================================================
+router.post('/login', function(req, res, next) {
+    let query = "select id, first_name, last_name, password from user WHERE user_name = '" + req.body.user_name + "'";
+    // execute query
+    db.query(query, (err, result) => {
+        if (err) {res.render('error');}
+        else {
+            if(result[0]) {
+                // Username was correct. Check if password is correct
+                bcrypt.compare(req.body.password, result[0].password, function(err, result1) {
+                    if(result1) {
+                        // Password is correct. Set session variables for user.
+                        var custid = result[0].id;
+                        req.session.customer_id = custid;
+                        res.redirect('/');
+                    } else {
+                        // password does not match
+                        res.render('user/login', {message: "Wrong Password"});
+                    }
+                });
+            }
+            else {res.render('user/login', {message: "Wrong Username"});}
+        }
+    });
+})
+
+// ==================================================
+// Route Check Login Credentials
+// ==================================================
+router.get('/logout', function(req, res, next) {
+    req.session.customer_id = 0;
+    req.session.cart=[];
+    req.session.quantity=[];
+    res.redirect('/');
+});
+    
 // ==================================================
 // Route to obtain user input and save in database.
 // ==================================================
