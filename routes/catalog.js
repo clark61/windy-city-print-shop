@@ -72,4 +72,43 @@ router.get('/cart', function(req, res, next) {
     }
 });
 
+// ==================================================
+// Route save cart items to SALEORDER and ORDERDETAILS tables
+// ==================================================
+router.get('/checkout', function(req, res, next) {
+    var proditemprice = 0;
+    // Check to make sure the user has logged-in
+    if (typeof req.session.customer_id !== 'undefined' && req.session.customer_id ) {
+        // Save INVOICE Record:
+        let insertquery = "INSERT INTO invoice(user_id, invoice_date) VALUES (?, now())";
+        db.query(insertquery,[req.session.customer_id],(err, result) => {
+            if (err) {
+                console.log(err);
+                res.render('error');
+            } else {
+                // Obtain the invoice_id value of the newly created SALEORDER Record
+                var invoice_id = result.insertId;
+                // Save SALEORDER Records
+                // There could be one or more items in the shopping cart
+                req.session.cart.forEach((cartitem, index) => {
+                    // Perform SALEORDER table insert
+                    let insertquery = "INSERT INTO saleorder(invoice_id, product_id, quantity, total) VALUES (?, ?, ?, (SELECT price from product where id = " + cartitem + "))";
+                    db.query(insertquery,[invoice_id, cartitem, req.session.quantity[index]],(err, result) => {
+                        if (err) {res.render('error');}
+                    });
+                });
+                // Empty out the items from the cart and quantity arrays
+                req.session.cart = [];
+                req.session.quantity = [];
+                // Display confirmation page
+                res.render('checkout', {ordernum: invoice_id });
+            }
+        });
+    }
+    else {
+        // Prompt user to login
+        res.redirect('/user/login');
+    }
+});
+
 module.exports = router;
