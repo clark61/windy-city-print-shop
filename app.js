@@ -56,6 +56,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: process.env.APP_SECRET}));
 
+app.use(function(req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
@@ -71,11 +76,6 @@ app.use('/order', orderRouter);
 app.use('/search', searchRouter);
 app.use('/report', reportRouter);
 app.use('/catalog', catalogRouter);
-
-app.use(function(req, res, next) {
-  res.locals.session = req.session;
-  next();
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
