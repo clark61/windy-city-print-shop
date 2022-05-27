@@ -26,11 +26,14 @@
     <li> <a href="/catalog">Catalog</a> </li>
     <li> <a href="/about">About Us</a> </li>
     <li> <a href="/contact">Contact Us</a> </li>
-    <li> <a href="/product">Products</a> </li>
-    <li> <a href="/review">Reviews</a> </li>
-    <li> <a href="/user">Users</a> </li>
-    <li> <a href="/promotion">Promotions</a> </li>
-    <li> <a href="/invoice">Invoices</a> </li>
-    <li> <a href="/order">Orders</a> </li>
-    <li> <a href="/report">Reports</a> </li>
+
+    <% if(session.is_admin) { %>
+        <li> <a href="/product">Products</a> </li>
+        <li> <a href="/review">Reviews</a> </li>
+        <li> <a href="/user">Users</a> </li>
+        <li> <a href="/promotion">Promotions</a> </li>
+        <li> <a href="/invoice">Invoices</a> </li>
+        <li> <a href="/order">Orders</a> </li>
+        <li> <a href="/report">Reports</a> </li>
+    <% } %>
 </ul>

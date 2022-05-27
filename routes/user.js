@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 // Route to list all records. Display view to list all records
 // ==================================================
 router.get('/', function(req, res, next) {
-    let query = "SELECT id, user_name, first_name, last_name, email, address_1, address_2, city, state, zip FROM user";
+    let query = "SELECT id, user_name, first_name, last_name, email, address_1, address_2, city, state, zip, is_admin FROM user";
     // execute query
     db.query(query, (err, result) => {
         if (err) {
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 // Route to view one specific record. Notice the view is one record
 // ==================================================
 router.get('/:recordid/show', function(req, res, next) {
-    let query = "SELECT id, user_name, password, first_name, last_name, email, address_1, address_2, city, state, zip FROM user WHERE id = " + req.params.recordid;
+    let query = "SELECT id, user_name, password, first_name, last_name, email, address_1, address_2, city, state, zip, is_admin FROM user WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
         if (err) {
@@ -78,7 +78,7 @@ router.get('/login', function(req, res, next) {
 // Route Check Login Credentials
 // ==================================================
 router.post('/login', function(req, res, next) {
-    let query = "select id, first_name, last_name, password from user WHERE user_name = '" + req.body.user_name + "'";
+    let query = "select id, first_name, last_name, password, is_admin from user WHERE user_name = '" + req.body.user_name + "'";
     // execute query
     db.query(query, (err, result) => {
         if (err) {res.render('error');}
@@ -90,6 +90,8 @@ router.post('/login', function(req, res, next) {
                         // Password is correct. Set session variables for user.
                         var custid = result[0].id;
                         req.session.customer_id = custid;
+                        var isAdmin = result[0].is_admin;
+                        req.session.is_admin = isAdmin;
                         res.redirect('/');
                     } else {
                         // password does not match
@@ -109,6 +111,7 @@ router.get('/logout', function(req, res, next) {
     req.session.customer_id = 0;
     req.session.cart=[];
     req.session.quantity=[];
+    req.session.is_admin = 0;
     res.redirect('/');
 });
     
