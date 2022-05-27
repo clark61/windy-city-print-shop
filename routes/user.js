@@ -148,13 +148,18 @@ router.get('/:recordid/edit', function(req, res, next) {
 // ==================================================
 router.post('/save', function(req, res, next) {
     let updatequery = "UPDATE user SET user_name = ?, password = ?, first_name = ?, last_name = ?, email = ?, address_1 = ?, address_2 = ?, city = ?, state = ?, zip = ? WHERE id = " + req.body.id;
-    db.query(updatequery,[req.body.user_name, req.body.password, req.body.first_name, req.body.last_name, req.body.email, req.body.address_1, req.body.address_2, req.body.city, req.body.state, req.body.zip], (err, result) => {
-        if (err) {
-            console.log(err);
-            res.render('error');
-        } else {
-            res.redirect('/user');
-        }
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            if(err) { res.render('error');}
+            db.query(updatequery,[req.body.user_name, hash, req.body.first_name, req.body.last_name, req.body.email, req.body.address_1, req.body.address_2, req.body.city, req.body.state, req.body.zip], (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.render('error');
+                } else {
+                    res.redirect('/user');
+                }
+            });
+        });
     });
 });
 
