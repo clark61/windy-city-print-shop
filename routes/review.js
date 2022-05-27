@@ -1,10 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
+function checkAdmin(req, res, next) {
+    if (!req.session.is_admin){
+        return res.redirect("/user/login");
+    }
+    next();
+}
+
+
 // ==================================================
 // Route to list all records. Display view to list all records
 // ==================================================
-router.get('/', function(req, res, next) {
+router.get('/', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_id, product_id, rating, comment, review_date, public FROM review";
     // execute query
     db.query(query, (err, result) => {
@@ -19,7 +27,7 @@ router.get('/', function(req, res, next) {
 // ==================================================
 // Route to view one specific record. Notice the view is one record
 // ==================================================
-router.get('/:recordid/show', function(req, res, next) {
+router.get('/:recordid/show', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_id, product_id, rating, comment, review_date, public FROM review WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
@@ -35,7 +43,7 @@ router.get('/:recordid/show', function(req, res, next) {
 // ==================================================
 // Route to show empty form to obtain input form end-user.
 // ==================================================
-router.get('/addrecord', function(req, res, next) {
+router.get('/addrecord', checkAdmin, function(req, res, next) {
     res.render('review/addrec');
 });
 
@@ -57,7 +65,7 @@ router.post('/', function(req, res, next) {
 // ==================================================
 // Route to edit one specific record.
 // ==================================================
-router.get('/:recordid/edit', function(req, res, next) {
+router.get('/:recordid/edit', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_id, product_id, rating, comment, review_date, public FROM review WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
@@ -73,7 +81,7 @@ router.get('/:recordid/edit', function(req, res, next) {
 // ==================================================
 // Route to save edited data in database.
 // ==================================================
-router.post('/save', function(req, res, next) {
+router.post('/save', checkAdmin, function(req, res, next) {
     let updatequery = "UPDATE review SET user_id = ?, product_id = ?, rating = ?, comment = ?, review_date = ?, public = ? WHERE id = " + req.body.id;
     db.query(updatequery,[req.body.user_id, req.body.product_id, req.body.rating, req.body.comment, req.body.review_date, req.body.public], (err, result) => {
         if (err) {
@@ -88,7 +96,7 @@ router.post('/save', function(req, res, next) {
 // ==================================================
 // Route to delete one specific record.
 // ==================================================
-router.get('/:recordid/delete', function(req, res, next) {
+router.get('/:recordid/delete', checkAdmin, function(req, res, next) {
     let query = "DELETE FROM review WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {

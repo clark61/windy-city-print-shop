@@ -2,10 +2,17 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 
+function checkAdmin(req, res, next) {
+    if (!req.session.is_admin){
+        return res.redirect("/user/login");
+    }
+    next();
+}
+
 // ==================================================
 // Route to list all records. Display view to list all records
 // ==================================================
-router.get('/', function(req, res, next) {
+router.get('/', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_name, first_name, last_name, email, address_1, address_2, city, state, zip, is_admin FROM user";
     // execute query
     db.query(query, (err, result) => {
@@ -20,7 +27,7 @@ router.get('/', function(req, res, next) {
 // ==================================================
 // Route to view one specific record. Notice the view is one record
 // ==================================================
-router.get('/:recordid/show', function(req, res, next) {
+router.get('/:recordid/show', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_name, password, first_name, last_name, email, address_1, address_2, city, state, zip, is_admin FROM user WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
@@ -36,7 +43,7 @@ router.get('/:recordid/show', function(req, res, next) {
 // ==================================================
 // Route to show empty form to obtain input form end-user.
 // ==================================================
-router.get('/addrecord', function(req, res, next) {
+router.get('/addrecord', checkAdmin, function(req, res, next) {
     res.render('user/addrec');
 });
 
@@ -133,7 +140,7 @@ router.post('/', function(req, res, next) {
 // ==================================================
 // Route to edit one specific record.
 // ==================================================
-router.get('/:recordid/edit', function(req, res, next) {
+router.get('/:recordid/edit', checkAdmin, function(req, res, next) {
     let query = "SELECT id, user_name, password, first_name, last_name, email, address_1, address_2, city, state, zip FROM user WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
@@ -149,7 +156,7 @@ router.get('/:recordid/edit', function(req, res, next) {
 // ==================================================
 // Route to save edited data in database.
 // ==================================================
-router.post('/save', function(req, res, next) {
+router.post('/save', checkAdmin, function(req, res, next) {
     let updatequery = "UPDATE user SET user_name = ?, password = ?, first_name = ?, last_name = ?, email = ?, address_1 = ?, address_2 = ?, city = ?, state = ?, zip = ? WHERE id = " + req.body.id;
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -169,7 +176,7 @@ router.post('/save', function(req, res, next) {
 // ==================================================
 // Route to delete one specific record.
 // ==================================================
-router.get('/:recordid/delete', function(req, res, next) {
+router.get('/:recordid/delete', checkAdmin, function(req, res, next) {
     let query = "DELETE FROM user WHERE id = " + req.params.recordid;
     // execute query
     db.query(query, (err, result) => {
