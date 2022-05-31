@@ -70,7 +70,7 @@ li a.active {
   50px 0 rgba(0,0,0,0.19);
 }
 
-input {
+input, textarea, select {
   color: #f4f4f5;
   background-color: #3f3f46;
   margin-top: 3px;
